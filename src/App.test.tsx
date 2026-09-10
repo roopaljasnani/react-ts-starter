@@ -1,11 +1,26 @@
 import { render, screen } from '@testing-library/react';
+import { createMemoryRouter, RouterProvider } from 'react-router';
 import { describe, expect, it } from 'vitest';
-import App from './App';
+import { routes } from './router';
 
-describe('App', () => {
-  it('renders the starter app', () => {
-    render(<App />);
+function renderPath(path: string) {
+  const router = createMemoryRouter(routes, { initialEntries: [path] });
+  return render(<RouterProvider router={router} />);
+}
 
-    expect(screen.getByRole('button')).toBeVisible();
+describe('routes', () => {
+  it('renders the home page', () => {
+    renderPath('/');
+
+    expect(screen.getByRole('heading', { name: 'Home' })).toBeInTheDocument();
+  });
+
+  it('renders not found for unknown paths', () => {
+    renderPath('/does-not-exist');
+
+    expect(
+      screen.getByRole('heading', { name: 'Page not found' }),
+    ).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'Go home' })).toBeInTheDocument();
   });
 });

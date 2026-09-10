@@ -1,21 +1,11 @@
-import { useState } from 'react';
+import { Outlet } from 'react-router';
 
-function App() {
-  const [count, setCount] = useState(0);
-
+const App: React.FC = () => {
   return (
-    <>
-      <section id="center">
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
-    </>
+    <main>
+      <Outlet />
+    </main>
   );
-}
+};
 
 export default App;

@@ -1,20 +1,5 @@
-* {
-  box-sizing: border-box;
-}
+@use 'reset';
 
-html,
-body,
 #root {
-  min-height: 100%;
-}
-
-body {
-  margin: 0;
-  font-family:
-    Inter,
-    system-ui,
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    sans-serif;
+  min-height: 100vh;
 }
